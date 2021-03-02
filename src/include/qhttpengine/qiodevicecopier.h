@@ -72,7 +72,7 @@ public:
     /**
      * @brief Create a new device copier from the specified source and destination devices
      */
-    QIODeviceCopier(QIODevice *src, QIODevice *dest, QObject *parent = 0);
+    QIODeviceCopier(QIODevice *src, QIODevice *dest, QObject *parent = nullptr);
 
     /**
      * @brief Set the size of the buffer

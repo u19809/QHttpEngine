@@ -75,12 +75,12 @@ public:
     /**
      * @brief Create an HTTP server
      */
-    explicit Server(QObject *parent = 0);
+    explicit Server(QObject *parent = nullptr);
 
     /**
      * @brief Create an HTTP server with the specified handler
      */
-    Server(Handler *handler, QObject *parent = 0);
+    Server(Handler *handler, QObject *parent = nullptr);
 
     /**
      * @brief Set the root handler for all new requests

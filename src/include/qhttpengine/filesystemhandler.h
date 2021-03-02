@@ -57,12 +57,12 @@ public:
     /**
      * @brief Create a new filesystem handler
      */
-    explicit FilesystemHandler(QObject *parent = 0);
+    explicit FilesystemHandler(QObject *parent = nullptr);
 
     /**
      * @brief Create a new filesystem handler from the specified directory
      */
-    FilesystemHandler(const QString &documentRoot, QObject *parent = 0);
+    FilesystemHandler(const QString &documentRoot, QObject *parent = nullptr);
 
     /**
      * @brief Set the document root

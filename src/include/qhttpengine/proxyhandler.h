@@ -46,7 +46,7 @@ public:
     /**
      * @brief Create a new proxy handler
      */
-    ProxyHandler(const QHostAddress &address, quint16 port, QObject *parent = 0);
+    ProxyHandler(const QHostAddress &address, quint16 port, QObject *parent = nullptr);
 
 protected:
 

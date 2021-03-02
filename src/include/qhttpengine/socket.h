@@ -182,7 +182,7 @@ public:
      * This instance will assume ownership of the QTcpSocket. That is, it will
      * make itself the parent of the socket.
      */
-    Socket(QTcpSocket *socket, QObject *parent = 0);
+    Socket(QTcpSocket *socket, QObject *parent = nullptr);
 
     /**
      * @brief Retrieve the number of bytes available for reading
@@ -212,6 +212,11 @@ public:
      * @brief Retrive the address of the remote peer
      */
     QHostAddress peerAddress() const;
+
+    /**
+     * @brief Retrive the port of the remote peer
+     */
+    quint16 peerPort() const;
 
     /**
      * @brief Determine if the request headers have been parsed yet

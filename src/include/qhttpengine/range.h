@@ -181,7 +181,7 @@ public:
      *
      * // When resource size is unknown
      * range = QHttpEngine::Range(512, 1024);
-     * range.contentRange(); // "512-1024/*"
+     * range.contentRange(); // "512-1024/""*"
      *
      * // if range request was bad, return resource size
      * range = QHttpEngine::Range(1, 0, 1200);

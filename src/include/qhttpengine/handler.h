@@ -83,7 +83,7 @@ public:
     /**
      * @brief Base constructor for a handler
      */
-    explicit Handler(QObject *parent = 0);
+    explicit Handler(QObject *parent = nullptr);
 
     /**
      * @brief Add middleware to the handler

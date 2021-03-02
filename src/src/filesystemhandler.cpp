@@ -35,7 +35,7 @@
 using namespace QHttpEngine;
 
 // Template for listing directory contents
-const QString ListTemplate =
+const QString ListTemplate = QStringLiteral(
         "<!DOCTYPE html>"
         "<html>"
           "<head>"
@@ -49,7 +49,7 @@ const QString ListTemplate =
             "<hr>"
             "<p><em>QHttpEngine %3</em></p>"
           "</body>"
-        "</html>";
+        "</html>" );
 
 FilesystemHandlerPrivate::FilesystemHandlerPrivate(FilesystemHandler *handler)
     : QObject(handler)
@@ -141,10 +141,7 @@ void FilesystemHandlerPrivate::processDirectory(Socket *socket, const QString &p
     }
 
     // Build the response and convert the string to UTF-8
-    QByteArray data = ListTemplate
-            .arg("/" + path.toHtmlEscaped())
-            .arg(listing)
-            .arg(QHTTPENGINE_VERSION)
+    QByteArray data = ListTemplate.arg( "/" + path.toHtmlEscaped(), listing, QHTTPENGINE_VERSION )
             .toUtf8();
 
     // Set the headers and write the content

@@ -38,13 +38,22 @@ ProxySocket::ProxySocket(Socket *socket, const QString &path, const QHostAddress
 
     connect(&mUpstreamSocket, &QTcpSocket::connected, this, &ProxySocket::onUpstreamConnected);
     connect(&mUpstreamSocket, &QTcpSocket::readyRead, this, &ProxySocket::onUpstreamReadyRead);
+    #if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     connect(
-        &mUpstreamSocket,
-        static_cast<void(QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error),
-        this,
-        &ProxySocket::onUpstreamError
+      &mUpstreamSocket,
+      static_cast<void(QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error),
+            this,
+            &ProxySocket::onUpstreamError
     );
-
+    #else
+    connect(
+      &mUpstreamSocket,
+      &QAbstractSocket::errorOccurred,
+      this,
+      &ProxySocket::onUpstreamError
+    );
+    #endif
+    
     mUpstreamSocket.connectToHost(address, port);
 }
 
@@ -135,7 +144,7 @@ void ProxySocket::onUpstreamReadyRead()
     }
 }
 
-void ProxySocket::onUpstreamError(QAbstractSocket::SocketError socketError)
+void ProxySocket::onUpstreamError(QAbstractSocket::SocketError /*socketError*/)
 {
     if (mHeadersParsed) {
         mDownstreamSocket->close();

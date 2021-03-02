@@ -55,7 +55,7 @@ public:
     inline bool operator<=(const QString &s2) const { return toLower() <= s2.toLower(); }
     inline bool operator>=(const QString &s2) const { return toLower() >= s2.toLower(); }
 
-    bool contains(char c) const { return toLower().contains(tolower(c)); }
+    bool contains(char c) const { return toLower().contains(char(tolower(c))); }
     bool contains(const char *c) const { return toLower().contains(QByteArray(c).toLower()); }
     bool contains(const QByteArray &a) const { return toLower().contains(a.toLower()); }
     /// \}

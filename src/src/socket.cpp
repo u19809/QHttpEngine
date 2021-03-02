@@ -34,7 +34,7 @@ using namespace QHttpEngine;
 
 // Predefined error response requires a simple HTML template to be returned to
 // the client describing the error condition
-const QString ErrorTemplate =
+const QString ErrorTemplate = QStringLiteral(
         "<!DOCTYPE html>"
         "<html>"
           "<head>"
@@ -51,18 +51,18 @@ const QString ErrorTemplate =
             "<hr>"
             "<p><em>QHttpEngine %3</em></p>"
           "</body>"
-        "</html>";
+        "</html>" );
 
 SocketPrivate::SocketPrivate(Socket *httpSocket, QTcpSocket *tcpSocket)
     : QObject(httpSocket),
-      q(httpSocket),
       socket(tcpSocket),
       readState(ReadHeaders),
       requestDataRead(0),
       requestDataTotal(-1),
       writeState(WriteNone),
       responseStatusCode(200),
-      responseStatusReason(statusReason(200))
+      responseStatusReason(statusReason(200)),
+      q(httpSocket)
 {
     socket->setParent(this);
 
@@ -115,6 +115,8 @@ void SocketPrivate::onReadyRead()
         break;
     case ReadFinished:
         readBuffer.clear();
+        break;
+    case ReadHeaders :
         break;
     }
 }
@@ -231,6 +233,11 @@ void Socket::close()
 QHostAddress Socket::peerAddress() const
 {
     return d->socket->peerAddress();
+}
+
+quint16 Socket::peerPort() const
+{
+  return d->socket->peerPort();
 }
 
 bool Socket::isHeadersParsed() const

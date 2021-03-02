@@ -82,7 +82,7 @@ public:
     /**
      * @brief Create a new QObject handler
      */
-    explicit QObjectHandler(QObject *parent = 0);
+    explicit QObjectHandler(QObject *parent = nullptr);
 
     /**
      * @brief Register a method

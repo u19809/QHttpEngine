@@ -61,7 +61,7 @@ public:
     /**
      * @brief Create a new local file
      */
-    explicit LocalFile(QObject *parent = 0);
+    explicit LocalFile(QObject *parent = nullptr);
 
     /**
      * @brief Attempt to open the file
